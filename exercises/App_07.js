@@ -1,0 +1,75 @@
+import React, { Component, useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { TextInput, Button } from 'react-native-paper';
+
+const isAdmin = true;
+
+const estilos = 'florida';
+
+const saludar = nombre => {
+  return <Text>{nombre}</Text>;
+};
+
+const datos = textLabel => {
+  return (
+    <View style={estilos === 'florida' ? styles.florida : styles.upv}>
+      <TextInput
+        label={textLabel}
+        placeholder="Nombre"
+        placeholderTextColor={estilos === 'florida' ? 'green' : 'orange'}
+        left={<TextInput.Icon icon="eye" />}
+      ></TextInput>
+      <TextInput
+        label={textLabel}
+        placeholder="Modulo"
+        placeholderTextColor={estilos === 'florida' ? 'green' : 'orange'}
+        left={<TextInput.Icon icon="eye" />}
+      ></TextInput>
+    </View>
+  );
+};
+
+const botonInformes = () => {
+  return <Button
+  icon= 'format-list-bulleted'
+  mode = "contained"
+  style = {{borderRadius: 5}}>INFORMES</Button>;
+};
+
+class App extends Component {
+  render() {
+    return (
+      <>
+        {saludar('Patricio')}
+        {datos('Introduce datos')}
+        {isAdmin && botonInformes()}
+      </>
+    );
+  }
+}
+const styles = StyleSheet.create({
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
+  },
+
+  upv: {
+    backgroundColor: 'purple',
+    fontSize: 10,
+    fontWeight: '600',
+    padding: 4,
+    paddingLeft: 12,
+    textAlign: 'left',
+    color: 'grey',
+  },
+
+  florida: {
+    backgroundColor: 'red',
+    fontSize: 12,
+    fontWeight: '600',
+    padding: 4,
+    paddingRight: 12,
+    textAlign: 'right',
+  },
+});
+export default App;
